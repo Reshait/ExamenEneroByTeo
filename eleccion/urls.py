@@ -8,4 +8,6 @@ urlpatterns = patterns('',
 
 #    url(r'^$', views.index, name='index'),
     url(r'^$', views.Index.as_view(), name='index'),
+    url(r'^login/$', views.Login, name='login'),
+    url(r'^logout/$', views.Logout, name='logout'),
 )

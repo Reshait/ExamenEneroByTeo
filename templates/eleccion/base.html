@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Elecciones by Teo</title>
+    </head>
+
+    <body>
+        <nav>
+            {% if user.is_authenticated %}
+                <small>Usuario: {{ user.username }}</small>
+                <small><a href="logout">logout</a></small>
+            {% else%}
+                <small>Usuario: Anónimo</small>
+                <small><a href="login">login</a></small>
+            {% endif %}
+
+            
+        </nav>
+        {% block content %}
+        {% endblock %}
+
+    </body>
+</html>
