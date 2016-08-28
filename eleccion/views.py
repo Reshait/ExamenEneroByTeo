@@ -7,7 +7,6 @@ from eleccion.models import Circunscripcion, Mesa
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 
-
 # Create your views here.
 
 
@@ -97,7 +96,7 @@ class CircunscripcionEditar(UpdateView):
 		return context
 
 	def dispatch(self, request, *args, **kwargs):
-		if not request.user.has_perms('eleccion.change_circunscripcion'):
+		if not request.user.has_perm('eleccion.change_circunscripcion'):
 			return redirect('circunscripcion_url')
 		return super(CircunscripcionEditar, self).dispatch(request, *args, **kwargs)
 
@@ -111,7 +110,7 @@ class CircunscripcionEliminar(DeleteView):
     success_url = reverse_lazy('circunscripcion_url')
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.has_perms('eleccion.delete_circunscripcion'):
+        if not request.user.has_perm('eleccion.delete_circunscripcion'):
             return redirect('circunscripcion_url')
         return super(CircunscripcionEliminar, self).dispatch(request, *args, **kwargs)
 

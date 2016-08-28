@@ -6,11 +6,11 @@
 		<h1>{{ circunscripcion.nombre }}</h1>
 		<h4> {{ circunscripcion.nEscanos }}</h4>
 		    	
-    	{% if perms.article.can_change %}
+    	{% if user.is_authenticated %}
 			<a href="{% url 'editar_url' circunscripcion.id %}" class="btn-teo">Editar</a>
     	{% endif %}
     	
-    	{% if perms.article.can_delete %}
+    	{% if user.is_authenticated %}
 			<a href="{% url 'eliminar_url' circunscripcion.id %}" class="btn-teo">Eliminar</a>
 		{% endif %}
 

@@ -3,8 +3,8 @@
     {% block content %}
     	<h1>Circunscripción</h1>
 
-        {% if user.is_authenticated %}
-			<a href="crear/">Añadir Circunscripción</a>
+        {% if perms.eleccion.change_circunscripcion %}
+			<a href="crear/">Añadir Circunscripciones</a>
 		{% endif %}
 
 		{% for x in object_list %}
