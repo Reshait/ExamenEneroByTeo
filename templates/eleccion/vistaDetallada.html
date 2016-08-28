@@ -1,17 +1,19 @@
 {% extends "eleccion/base.html" %}
 
     {% block content %}
-		<h1>Vista Detallada</h1>
+		<h1 class="page-header">Vista Detallada</h1>
 		
-		<h1>{{ circunscripcion.nombre }}</h1>
-		<h4> {{ circunscripcion.nEscanos }}</h4>
-		    	
-    	{% if user.is_authenticated %}
-			<a href="{% url 'editar_url' circunscripcion.id %}" class="btn-teo">Editar</a>
-    	{% endif %}
-    	
-    	{% if user.is_authenticated %}
-			<a href="{% url 'eliminar_url' circunscripcion.id %}" class="btn-teo">Eliminar</a>
-		{% endif %}
+		<p>Nombre de la Circunscripción:  <strong style="font-size:24px"> {{ circunscripcion.nombre }}</strong></p>
+		<p>Cantidad de Escaños:  <strong style="font-size:24px">{{ circunscripcion.nEscanos }} </strong></p>
 
+        <div class="row">
+        	<div class="col-md-4">		    	
+
+		    	{% if user.is_authenticated %}
+					<a href="{% url 'editar_url' circunscripcion.id %}" class="btn btn-default">Editar</a>
+					<a href="{% url 'eliminar_url' circunscripcion.id %}" class="btn btn-danger" style="float:right">Eliminar</a>
+				{% endif %}
+
+			</div>
+		</div>
     {% endblock %}

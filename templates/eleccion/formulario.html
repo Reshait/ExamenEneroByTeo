@@ -5,6 +5,6 @@
 	    <form role="form" action="" method="post">
 	        {% csrf_token %}
 	        {{ form.as_p }}
-	        <button type="submit">{{ nombre_btn }}</button>
+	        <button type="submit" class="btn btn-success">{{ nombre_btn }}</button>
 	    </form>
 	{% endblock %}
