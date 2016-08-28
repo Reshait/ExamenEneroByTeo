@@ -1,7 +1,13 @@
 {% extends "eleccion/base.html" %}
 
     {% block content %}
-        <h1>Hola Caracola</h1>
+        <h1>Gestor Electoral</h1>
+        <h4>Bienvenido al sistema de gestión electoral</h4>
 
+		{% if user.is_authenticated %}
+        	<p>Ud. Está logueado como <strong>{{user.username}}</strong></p>
+        {% else %}
+        	<p>Ud. Está en modo anónimo, para disfrutar de todas las opciones, por favor, identifíquese.</p>
+        {% endif %}
 
     {% endblock %}

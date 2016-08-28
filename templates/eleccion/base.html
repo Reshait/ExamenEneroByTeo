@@ -6,18 +6,29 @@
 
     <body>
         <nav>
-            {% if user.is_authenticated %}
-                <small>Usuario: {{ user.username }}</small>
-                <small><a href="logout">logout</a></small>
-            {% else%}
-                <small>Usuario: Anónimo</small>
-                <small><a href="login">login</a></small>
-            {% endif %}
+            <div style="float:right">
+                {% if user.is_authenticated %}
+                    <small>Usuario: <strong>{{ user.username }}</strong></small>
+                    <small><a href="/eleccion/logout/">logout</a></small>
+                {% else%}
+                    <small>Usuario: <strong>Anónimo</strong></small>
+                    <small><a href="/eleccion/login/">login</a></small>
+                {% endif %}
+            </div>
 
+            <a href="/eleccion/">Inicio</a>
+            <a href="/eleccion/circunscripcion/">Circunscripción</a>
             
         </nav>
         {% block content %}
         {% endblock %}
 
     </body>
+    <footer>
+        <p>
+            <small>Asignatura: <strong>Programación Web</strong></small>
+            <small> | </small>
+            <small>Alumno: <strong>Teófilo Rojas Mata</strong></small>
+        </p>
+    </footer>
 </html>

@@ -4,7 +4,10 @@ from django.db import models
 class Circunscripcion(models.Model):
 	nombre = models.CharField(max_length = 144, default = "nombre")
 	nEscanos = models.IntegerField(blank=True)
-
+	
+	class Meta:
+		ordering = ['nombre']
+	
 	def __unicode__(self):
 		return self.nombre
 
@@ -12,14 +15,19 @@ class Mesa(models.Model):
 	nombre = models.CharField(max_length = 144, default = "nombre")
 	circunscripcion = models.ForeignKey(Circunscripcion)
 
+	class Meta:
+		ordering = ['nombre']
+
 	def __unicode__(self):
-#		return (self.nombre + self.circunscripcion)
 		return 'Mesa: %s, De: %s' % (self.nombre, self.circunscripcion)
 
 	
 class Partido(models.Model):
 	nombre = models.CharField(max_length = 144, default = "nombre", unique = True)
 
+	class Meta:
+		ordering = ['nombre']
+		
 	def __unicode__(self):
 		return self.nombre
 
@@ -29,6 +37,5 @@ class Resultado(models.Model):
 	nVotos = models.IntegerField(blank = True)
 
 	def __unicode__(self):
-#		return ("Partido" + self.partido  + "+ Mesa " + self.mesa + " = "  + self.nVotos)
 		return 'Partido: %s, + Mesa: %s --> %s votos' % (self.nombre, self.mesa, self.nVotos)
 
