@@ -1,0 +1,15 @@
+{% extends 'eleccion/base.html' %}
+
+    {% block content %}
+        <h2 class="page-header">Confirmación para eliminar {{ circunscripcion.titulo }}</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            <p>¿Seguro que quieres eliminar la entrada {{ circunscripcion.titulo }}?</p>
+            <div class="row">
+          		<div class="col-md-6">
+    	 	        <button type="submit" class="btn btn-danger">Si, eliminar</button>
+    		        <a href="{% url 'circunscripcion_detalle_url' circunscripcion.id %}" class="btn-teo" style="float:right">Cancelar</a>       			
+            	</div>
+            </div>
+        </form>
+    {% endblock %}

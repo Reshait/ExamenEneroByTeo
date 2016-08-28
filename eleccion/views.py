@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, CreateView, DetailView
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from eleccion.models import Circunscripcion, Mesa
 from django.core.urlresolvers import reverse_lazy
-
+from django.shortcuts import redirect
 
 
 # Create your views here.
@@ -79,3 +79,42 @@ class CircunscripcionDetalle(DetailView):
         context = super(CircunscripcionDetalle, self).get_context_data(**kwargs)
 #        context['listadoMesas'] = ListadoMesas()
         return context
+
+
+class CircunscripcionEditar(UpdateView):
+	template_name = 'eleccion/formulario.html'
+	model = Circunscripcion
+	fields = ('nombre', 'nEscanos')
+	success_url = reverse_lazy('circunscripcion_url')
+
+	def get_context_data(self, **kwargs):
+        # Obtenemos el contexto de la clase base
+		context = super(CircunscripcionEditar, self).get_context_data(**kwargs)
+	    # anyadimos nuevas variables de contexto al diccionario
+		context['titulo'] = 'Editar Circunscripcion'
+		context['nombre_btn'] = 'Editar'
+        # devolvemos el contexto
+		return context
+
+	def dispatch(self, request, *args, **kwargs):
+		if not request.user.has_perms('eleccion.change_circunscripcion'):
+			return redirect('circunscripcion_url')
+		return super(CircunscripcionEditar, self).dispatch(request, *args, **kwargs)
+
+#	def form_valid(self, form):
+#		messages.success(self.request, 'Circunscripcion editada correctamente')
+#		return super(CircunscripcionEditar, self).form_valid(form)
+
+class CircunscripcionEliminar(DeleteView):
+    template_name = 'eleccion/eliminar.html'
+    model = Circunscripcion
+    success_url = reverse_lazy('circunscripcion_url')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perms('eleccion.delete_circunscripcion'):
+            return redirect('circunscripcion_url')
+        return super(CircunscripcionEliminar, self).dispatch(request, *args, **kwargs)
+
+#    def form_valid(self, form):
+#        messages.success(self.request, 'Entrada eliminada correctamente')
+#        return super(CircunscripcionEliminar, self).form_valid(form)

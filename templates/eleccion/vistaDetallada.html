@@ -4,14 +4,14 @@
 		<h1>Vista Detallada</h1>
 		
 		<h1>{{ circunscripcion.nombre }}</h1>
-		<p> {{ circunscripcion.nEscanos }}</p>
+		<h4> {{ circunscripcion.nEscanos }}</h4>
 		    	
     	{% if perms.article.can_change %}
-			<h2>Editar</h2>
+			<a href="{% url 'editar_url' circunscripcion.id %}" class="btn-teo">Editar</a>
     	{% endif %}
     	
     	{% if perms.article.can_delete %}
-			<h2>Eliminar</h2>
+			<a href="{% url 'eliminar_url' circunscripcion.id %}" class="btn-teo">Eliminar</a>
 		{% endif %}
 
     {% endblock %}
