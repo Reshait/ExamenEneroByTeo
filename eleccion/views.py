@@ -46,7 +46,10 @@ def Logout(request):
     return HttpResponseRedirect('/eleccion/')
 #Me falla si no estoy en /eleccion/
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 822b6fcf9cb61481a4a27938c8135354d8aecb02
 class CircunscripcionLista(ListView):
 	model = Circunscripcion
 	template_name = "eleccion/circunscripcion.html"
@@ -67,6 +70,12 @@ class CircunscripcionCrear(CreateView):
         # devolvemos el contexto
         return context
 
+<<<<<<< HEAD
+=======
+def ListadoMesas():
+    listadoTitulos = Mesa.objects.all()[:10]
+    return listadoMesas
+>>>>>>> 822b6fcf9cb61481a4a27938c8135354d8aecb02
 
 class CircunscripcionDetalle(DetailView):
     model = Circunscripcion
@@ -74,7 +83,11 @@ class CircunscripcionDetalle(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CircunscripcionDetalle, self).get_context_data(**kwargs)
+<<<<<<< HEAD
         context['listadoMesas'] = Mesa.objects.filter(circunscripcion=self.kwargs['pk'])
+=======
+#        context['listadoMesas'] = ListadoMesas()
+>>>>>>> 822b6fcf9cb61481a4a27938c8135354d8aecb02
         return context
 
 
@@ -115,6 +128,7 @@ class CircunscripcionEliminar(DeleteView):
 #    def form_valid(self, form):
 #        messages.success(self.request, 'Entrada eliminada correctamente')
 #        return super(CircunscripcionEliminar, self).form_valid(form)
+<<<<<<< HEAD
 
 
 # Falla al cargar los datos para vista detalle
@@ -130,3 +144,5 @@ def MesaLista(request):
     #context={'mesa':mesa}
     
     return render(request,'eleccion/mesa.html', {'mesa':mesa})
+=======
+>>>>>>> 822b6fcf9cb61481a4a27938c8135354d8aecb02

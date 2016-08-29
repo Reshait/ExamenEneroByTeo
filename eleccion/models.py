@@ -16,7 +16,11 @@ class Mesa(models.Model):
 	circunscripcion = models.ForeignKey(Circunscripcion)
 
 	class Meta:
+<<<<<<< HEAD
 		ordering = ['circunscripcion', 'nombre']
+=======
+		ordering = ['nombre']
+>>>>>>> 822b6fcf9cb61481a4a27938c8135354d8aecb02
 
 	def __unicode__(self):
 		return 'Mesa: %s, De: %s' % (self.nombre, self.circunscripcion)
