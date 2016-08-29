@@ -25,10 +25,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'index' %}">Inicio</a></li>
             <li><a href="{% url 'circunscripcion_url' %}">Circunscripciones</a></li>
-<<<<<<< HEAD
             <li><a href="{% url 'mesa_url' %}">Mesas</a></li>            
-=======
->>>>>>> 822b6fcf9cb61481a4a27938c8135354d8aecb02
           </ul>
 
           <!-- Parte derecha dedicada a los usuarios -->
@@ -38,11 +35,7 @@
                     <li class="navbar-brand" style="color:white"><small>{{ user.username }}</small></li>
                     <li><a href="/eleccion/logout/">logout</a></li>
                 {% else%}
-<<<<<<< HEAD
                     <li class="navbar-brand" style="color:white"><small>Anónimo</small></li>
-=======
-                    <li>Usuario: <strong>Anónimo</strong></li>
->>>>>>> 822b6fcf9cb61481a4a27938c8135354d8aecb02
                     <li><a href="/eleccion/login/">login</a></li>
                 {% endif %}
           </ul>
