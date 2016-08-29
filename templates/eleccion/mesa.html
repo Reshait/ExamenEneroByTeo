@@ -10,10 +10,10 @@
 
 		<div class="row">
 			<ul>
-			{% for x in object_list %}
+			{% for mesa in listadoMesas %}
 				<li>
 					<a href="{% url 'mesa_detalle_url' x.id %}">
-								<p>Mesa: <h4><strong>{{ x.nombre }}</strong></h4>, de {{x.circunscripcion}}</p>
+								<p>Mesa: <h4><strong>{{ mesa.nombre }}</strong></h4>, de {{mesa.circunscripcion}}</p>
 					</a>
 				</li>
 			{% empty %}

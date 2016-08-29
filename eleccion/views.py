@@ -120,7 +120,7 @@ class CircunscripcionEliminar(DeleteView):
 # Falla al cargar los datos para vista detalle
 def MesaDetalle(request, pk):
     mesa = Mesa.objects.filter(pk=pk)
-    context={'mesa':mesa}
+    context={'listadoMesas':mesa}
     
     return render(request,'eleccion/vistaDetalladaMesa.html', context)
 
