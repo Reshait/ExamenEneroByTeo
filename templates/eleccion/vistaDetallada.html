@@ -10,7 +10,7 @@
 				<p>Cantidad de Escaños:  <strong style="font-size:24px">{{ circunscripcion.nEscanos }} </strong></p>
 
   				<div class="col-md-4">
-			    	{% if user.is_authenticated %}
+        			{% if perms.eleccion.change_circunscripcion %}
 						<a href="{% url 'editar_url' circunscripcion.id %}" class="btn btn-default">Editar</a>
 						<a href="{% url 'eliminar_url' circunscripcion.id %}" class="btn btn-danger" style="float:right">Eliminar</a>
 					{% endif %}

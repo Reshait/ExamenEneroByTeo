@@ -20,6 +20,7 @@ class Mesa(models.Model):
 
 	def __unicode__(self):
 		return 'Mesa: %s, De: %s' % (self.nombre, self.circunscripcion)
+#		return self.nombre
 
 	
 class Partido(models.Model):

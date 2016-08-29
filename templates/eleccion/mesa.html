@@ -1,7 +1,7 @@
 {% extends "eleccion/base.html" %}
 
     {% block content %}
-    	<h1  class="page-header">Mesas</h1>
+    	<h1  class="page-header">Listado de Mesas</h1>
 
         {% if perms.eleccion.change_mesa %}
 			Añadir Mesa
@@ -12,9 +12,10 @@
 			<ul>
 			{% for mesa in listadoMesas %}
 				<li>
-					<a href="{% url 'mesa_detalle_url' x.id %}">
-								<p>Mesa: <h4><strong>{{ mesa.nombre }}</strong></h4>, de {{mesa.circunscripcion}}</p>
+					<a href="{% url 'mesa_detalle_url' mesa.id %}">
+						<p>Mesa: <strong>{{ mesa.nombre }}</strong>, de la Circunscripción: <strong>{{mesa.circunscripcion}}</strong></p>
 					</a>
+					<hr>
 				</li>
 			{% empty %}
 	    			<li>No hay Mesas aún.</li>

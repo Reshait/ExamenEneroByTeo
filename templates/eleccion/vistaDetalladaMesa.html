@@ -8,15 +8,13 @@
 				
 				{% if mesa %}
 
-					{{ mesa.id }}{{ mesa.nombre }}{{ mesa.circunscripcion }}{{ mesa.pk }}
-
 					<p>Nombre de la Mesa:  <strong style="font-size:24px"> {{ mesa.nombre }}</strong></p>
 					<p>Circunscripcion de la Mesa:  <strong style="font-size:24px">{{ mesa.circunscripcion }} </strong></p>
 
 	  				<div class="col-md-4">
-				    	{% if user.is_authenticated %}
-							<a href="" class="btn btn-default">Editar</a>
-							<a href="" class="btn btn-danger" style="float:right">Eliminar</a>
+        				{% if perms.eleccion.change_mesa %}
+							<a href="{% url 'mesa_editar_url' mesa.id %}" class="btn btn-default">Editar</a>
+							<a href="{% url 'mesa_editar_url' mesa.id %}" class="btn btn-danger" style="float:right">Eliminar</a>
 						{% endif %}
 					</div>
 
@@ -26,4 +24,5 @@
 			</div>
 
 		</div>
+
     {% endblock %}

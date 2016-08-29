@@ -117,16 +117,25 @@ class CircunscripcionEliminar(DeleteView):
 #        return super(CircunscripcionEliminar, self).form_valid(form)
 
 
-# Falla al cargar los datos para vista detalle
 def MesaDetalle(request, pk):
-    mesa = Mesa.objects.filter(pk=pk)
-    context={'listadoMesas':mesa}
-    
-    return render(request,'eleccion/vistaDetalladaMesa.html', context)
+    mesa = Mesa.objects.get(pk=pk)    
+    return render(request,'eleccion/vistaDetalladaMesa.html', {'mesa':mesa})
 
 
 def MesaLista(request):
-    mesa = Mesa.objects.all()
-    #context={'mesa':mesa}
-    
-    return render(request,'eleccion/mesa.html', {'mesa':mesa})
+    mesa = Mesa.objects.all()    
+    return render(request,'eleccion/mesa.html', {'listadoMesas':mesa})
+
+
+@login_required(login_url='login')
+def MesaEditar(request, id_mesa ):
+    mesa = get_object_or_404(Mesa, pk = id_mesa)
+    formulario = MesaForm(request.POST or None, instance = mesa)
+
+    if request.method == 'POST':
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('mesa_url')
+    else:
+        context = { 'formulario': formulario,'titulo':"Editar Mesa"}
+    return render_to_response('eleccion/formulario.html', context,  context_instance=RequestContext(request))
