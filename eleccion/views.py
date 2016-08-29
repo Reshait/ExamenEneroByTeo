@@ -1,11 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from eleccion.models import Circunscripcion, Mesa
+from eleccion.forms import MesaForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
+
+
+from django.template import RequestContext, loader
+
 
 # Create your views here.
 
@@ -128,8 +133,8 @@ def MesaLista(request):
 
 
 @login_required(login_url='login')
-def MesaEditar(request, id_mesa ):
-    mesa = get_object_or_404(Mesa, pk = id_mesa)
+def MesaEditar(request, pk ):
+    mesa = get_object_or_404(Mesa, pk = pk)
     formulario = MesaForm(request.POST or None, instance = mesa)
 
     if request.method == 'POST':
@@ -138,4 +143,4 @@ def MesaEditar(request, id_mesa ):
             return HttpResponseRedirect('mesa_url')
     else:
         context = { 'formulario': formulario,'titulo':"Editar Mesa"}
-    return render_to_response('eleccion/formulario.html', context,  context_instance=RequestContext(request))
+    return render('eleccion/formulario.html', {'formulario':formulario})
