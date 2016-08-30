@@ -2,12 +2,17 @@
 
     {% block content %}
         <h1 class="page-header">Gestor Electoral</h1>
-        <h4>Bienvenido al sistema de gestión electoral</h4>
 
 		{% if user.is_authenticated %}
         	<p>Ud. Está logueado como <strong>{{user.username}}</strong></p>
         {% else %}
         	<p>Ud. Está en modo anónimo, para disfrutar de todas las opciones, por favor, identifíquese.</p>
         {% endif %}
+
+        <div class="jumbotron">
+        	<h2>Consideraciones generales respecto al examen</h2>
+        	<p>Bienvenido al sistema de gestión electoral</p>
+
+        </div>
 
     {% endblock %}
