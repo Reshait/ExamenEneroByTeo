@@ -4,7 +4,7 @@
     	<h1  class="page-header">Listado de Mesas</h1>
 
         {% if perms.eleccion.change_mesa %}
-			Añadir Mesa
+			<a href="{% url 'mesa_crear_url' %}">Añadir Mesa</a>
 		{% endif %}
 
 
