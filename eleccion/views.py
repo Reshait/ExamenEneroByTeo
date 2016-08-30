@@ -8,12 +8,7 @@ from eleccion.forms import MesaForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 
-
-from django.template import RequestContext, loader
-
-
 # Create your views here.
-
 
 #def index(request):
 #    return HttpResponse("Hello, world. You're at the polls index.")
@@ -134,13 +129,13 @@ def MesaLista(request):
 
 @login_required(login_url='login')
 def MesaEditar(request, pk ):
-    mesa = get_object_or_404(Mesa, pk = pk)
-    formulario = MesaForm(request.POST or None, instance = mesa)
-
-    if request.method == 'POST':
-        if formulario.is_valid():
-            formulario.save()
-            return HttpResponseRedirect('mesa_url')
+    mesa = get_object_or_404(Mesa, pk=pk)
+    if request.method == "POST":
+        form = MesaForm(request.POST, instance=mesa)
+        if form.is_valid():
+            mesa = form.save(commit=False)
+            mesa.save()
+            return redirect('mesa_url')
     else:
-        context = { 'formulario': formulario,'titulo':"Editar Mesa"}
-    return render('eleccion/formulario.html', {'formulario':formulario})
+        form = MesaForm(instance=mesa)
+    return render(request, 'eleccion/formulario.html', {'form': form, 'titulo':"Editar Mesa", 'nombre_btn':"Editar"})
