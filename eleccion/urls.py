@@ -21,5 +21,6 @@ urlpatterns = patterns('',
     # Apartado Mesa
     url(r'^mesa/$', views.MesaLista, name='mesa_url'),
     url(r'^mesa/vistaDetalladaMesa/(?P<pk>.*)$', views.MesaDetalle, name='mesa_detalle_url'),
+    url(r'^mesa/crear/$', views.MesaCrear, name='mesa_crear_url'),
     url(r'^mesa/editar/(?P<pk>.*)$', views.MesaEditar, name='mesa_editar_url'),
 )

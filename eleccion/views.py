@@ -128,6 +128,19 @@ def MesaLista(request):
 
 
 @login_required(login_url='login')
+def MesaCrear(request):
+    if request.method == "POST":
+        form = MesaForm(request.POST)
+        if form.is_valid():
+            mesa = form.save(commit=False)
+            mesa.save()
+            return redirect('mesa_url')
+    else:
+        form = MesaForm()
+        return render(request, 'eleccion/formulario.html', {'form': form, 'titulo':"Crear Mesa", 'nombre_btn':"Crear"}) 
+
+
+@login_required(login_url='login')
 def MesaEditar(request, pk ):
     mesa = get_object_or_404(Mesa, pk=pk)
     if request.method == "POST":
