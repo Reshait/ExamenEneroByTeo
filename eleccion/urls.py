@@ -23,4 +23,9 @@ urlpatterns = patterns('',
     url(r'^mesa/vistaDetalladaMesa/(?P<pk>.*)$', views.MesaDetalle, name='mesa_detalle_url'),
     url(r'^mesa/crear/$', views.MesaCrear, name='mesa_crear_url'),
     url(r'^mesa/editar/(?P<pk>.*)$', views.MesaEditar, name='mesa_editar_url'),
+
+    # Apartado Resultado
+    url(r'^resultado/$', views.ResultadoLista.as_view(), name='resultado_url'),
+    url(r'^resultado/crear/$', views.ResultadoCrear.as_view(), name='resultado_crear_url'),
+
 )

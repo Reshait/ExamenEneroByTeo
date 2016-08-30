@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, ListView, CreateView, DetailView,
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from eleccion.models import Circunscripcion, Mesa
+from eleccion.models import Circunscripcion, Mesa, Resultado
 from eleccion.forms import MesaForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
@@ -29,7 +29,6 @@ def Login(request):
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect('/eleccion/')
-                #Me falla si no estoy en /eleccion/
             else:
                 return HttpResponse("Su cuenta esta deshabilitada.")
         else:
@@ -44,7 +43,6 @@ def Login(request):
 def Logout(request):
     logout(request)
     return HttpResponseRedirect('/eleccion/')
-#Me falla si no estoy en /eleccion/
 
 
 class CircunscripcionLista(ListView):
@@ -152,3 +150,24 @@ def MesaEditar(request, pk ):
     else:
         form = MesaForm(instance=mesa)
     return render(request, 'eleccion/formulario.html', {'form': form, 'titulo':"Editar Mesa", 'nombre_btn':"Editar"})
+
+
+class ResultadoCrear(CreateView):
+    template_name = 'eleccion/formulario.html'
+    model = Resultado
+    fields = ('partido', 'mesa', 'nVotos')
+    success_url = reverse_lazy('resultado_url')
+
+    def get_context_data(self, **kwargs):
+        # Obtenemos el contexto de la clase base
+        context = super(ResultadoCrear, self).get_context_data(**kwargs)
+        # anyadimos nuevas variables de contexto al diccionario
+        context['titulo'] = 'Crear Resultado'
+        context['nombre_btn'] = 'Crear'
+        # devolvemos el contexto
+        return context
+
+
+class ResultadoLista(ListView):
+    model = Resultado
+    template_name = "eleccion/resultado.html"
